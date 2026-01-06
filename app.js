@@ -250,13 +250,13 @@ function displayEvaluation() {
 }
 
 // Get evaluation class for styling
-function getEvalClass(eval) {
-    if (typeof eval === 'string' && eval.startsWith('M')) {
-        const mateIn = parseInt(eval.substring(1));
+function getEvalClass(evaluation) {
+    if (typeof evaluation === 'string' && evaluation.startsWith('M')) {
+        const mateIn = parseInt(evaluation.substring(1));
         return mateIn > 0 ? 'eval-positive' : 'eval-negative';
     }
     
-    const evalNum = parseFloat(eval);
+    const evalNum = parseFloat(evaluation);
     if (evalNum > 1) return 'eval-positive';
     if (evalNum < -1) return 'eval-negative';
     return 'eval-neutral';
