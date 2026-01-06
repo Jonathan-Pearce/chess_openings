@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Opening Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Chess.js for move validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    
+    <!-- Chessboard.js for the board UI -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    
+    <!-- Stockfish.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stockfish.js/10.0.2/stockfish.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>♟️ Chess Opening Explorer</h1>
+            <p>Explore chess openings with Lichess statistics and Stockfish analysis</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Chess Board -->
+            <div class="board-panel">
+                <div id="chessboard"></div>
+                
+                <div class="board-controls">
+                    <button id="resetBtn" class="btn">Reset Board</button>
+                    <button id="flipBtn" class="btn">Flip Board</button>
+                    <button id="undoBtn" class="btn">Undo Move</button>
+                </div>
+
+                <div class="move-history">
+                    <h3>Move History</h3>
+                    <div id="pgn-display"></div>
+                    <div id="fen-display"></div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Statistics and Analysis -->
+            <div class="info-panel">
+                <!-- Lichess Statistics -->
+                <div class="section lichess-stats">
+                    <h2>📊 Lichess Statistics</h2>
+                    <div id="lichess-loading" class="loading">Click on a move or make moves on the board...</div>
+                    <div id="lichess-error" class="error" style="display: none;"></div>
+                    
+                    <div id="lichess-content" style="display: none;">
+                        <div class="stats-summary">
+                            <h3>Position Statistics</h3>
+                            <div id="position-stats"></div>
+                        </div>
+
+                        <div class="popular-moves">
+                            <h3>Popular Moves</h3>
+                            <div id="popular-moves-list"></div>
+                        </div>
+
+                        <div class="opening-name">
+                            <h3>Opening Name</h3>
+                            <div id="opening-name"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stockfish Analysis -->
+                <div class="section stockfish-analysis">
+                    <h2>🤖 Stockfish Analysis</h2>
+                    <div id="stockfish-loading" class="loading">Initializing engine...</div>
+                    <div id="stockfish-error" class="error" style="display: none;"></div>
+                    
+                    <div id="stockfish-content" style="display: none;">
+                        <div class="engine-controls">
+                            <label>
+                                Depth:
+                                <input type="number" id="depth-input" min="1" max="30" value="15">
+                            </label>
+                            <button id="analyzeBtn" class="btn btn-primary">Analyze Position</button>
+                        </div>
+
+                        <div class="analysis-results">
+                            <h3>Best Moves</h3>
+                            <div id="best-moves-list"></div>
+                        </div>
+
+                        <div class="evaluation">
+                            <h3>Position Evaluation</h3>
+                            <div id="evaluation-display"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
